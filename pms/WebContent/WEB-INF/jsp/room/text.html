@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+    <meta charset="UTF-8">  
+    <title></title>  
+  
+    <style>  
+        td input[type="text"],td input[type="email"],td input[type="password"], td input[type="date"]{  
+            width:98%;  
+        }  
+  
+  
+    </style>  
+    <script>  
+        function checkLength(){  
+            var pwd=document.getElementById("pwd").value;  
+            var spanLen=document.getElementById("spanLen");  
+  
+  
+            if(pwd.length<=3&&pwd.length>0)  
+                spanLen.innerHTML="弱";  
+            else if(pwd.length<=6)  
+                spanLen.innerText="中";  
+            else  
+                spanLen.innerText="强";  
+  
+        }  
+  
+        function checkPSW(){
+            var pwd1 = document.getElementById("pwd").value;  
+            var pwd2 = document.getElementById("pwd2").value;  
+            var pswInfo = document.getElementById("pswInfo");  
+            if(pwd1 != pwd2)  
+                pswInfo.innerText="两次密码不同";   // alert("两次密码不同");  
+            else  
+                pswInfo.innerText="";  
+        }
+    </script> 
+
+</head>
+<body>
+
+  
+<form>  
+    <fieldset>  
+        <legend>  
+            用户注册页面  
+        </legend>  
+  
+        <table align="center" width="500px" >  
+            <caption>用户登录信息</caption>  
+            <tr>  
+            	<!-- required必填字段， autofocus自动获取焦点 -->
+                <td width="20%" >用户名</td>  
+                <td width="40%"><input type="text" required autofocus="true"></td>  
+                <td width="40%">*</td>  
+            </tr>  
+            <tr>  
+                <td>邮箱</td>  
+                <td><input type="email" required="true"></td>  
+                <td>*</td>
+            </tr>  
+            <tr>  
+                <td>密码</td>  
+                <td><input type="password" id="pwd" required onkeyup="checkLength()"></td>  
+                <td>* <span id="spanLen"></span></td>
+            </tr>  
+            <tr>  
+                <td>确认密码</td>  
+                <td><input type="password"  id="pwd2" required="true" onblur="checkPSW()"></td>  
+                <td align="left">* <span id="pswInfo" style="color: #c41a15;"></span></td>  
+  
+            </tr>  
+        </table>  
+  
+        <br>  
+        <br>  
+        <table align="center" width="500px">  
+            <caption>用户基本信息</caption>  
+            <tr>
+                <td width="20%">性别</td>  
+                <td width="40%">  
+                    <select size="1">  
+                        <option>男</option>  
+                        <option>女</option>  
+                    </select>  
+                </td>  
+                <td width="40%"></td>  
+  
+            </tr>  
+  
+            <tr>  
+                <td>出生年月</td>  
+                <td><input type="date"></td>  
+            </tr>  
+            <tr>  
+                <td>住址</td>  
+                <td><input type="text"></td>  
+            </tr>  
+            <tr>  
+                <td colspan="2">  
+                    <input type="submit" value="注册新用户">  
+                </td>  
+                <td>  
+                    <input type="reset" value="重置">  
+                </td>  
+            </tr>  
+        </table>  
+    </fieldset>  
+</form>
+
+</body>
+</html>

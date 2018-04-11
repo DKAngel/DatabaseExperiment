@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.pms.dao.UpkeepMapper" >
+  <resultMap id="BaseResultMap" type="com.pms.pojo.Upkeep" >
+    <id column="upkeep_id" property="upkeepId" jdbcType="INTEGER" />
+    <result column="upkeep_content" property="upkeepContent" jdbcType="VARCHAR" />
+    <result column="upkeep_time" property="upkeepTime" jdbcType="TIMESTAMP" />
+    <result column="upkeep_handle_time" property="upkeepHandleTime" jdbcType="TIMESTAMP" />
+    <result column="upkeep_process" property="upkeepProcess" jdbcType="VARCHAR" />
+    <result column="upkeep_result" property="upkeepResult" jdbcType="VARCHAR" />
+    <result column="owners_id" property="ownersId" jdbcType="INTEGER" />
+    <result column="admin_id" property="adminId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    upkeep_id, upkeep_content, upkeep_time, upkeep_handle_time, upkeep_process, upkeep_result, 
+    owners_id, admin_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from upkeep
+    where upkeep_id = #{upkeepId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from upkeep
+    where upkeep_id = #{upkeepId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.pms.pojo.Upkeep" >
+    insert into upkeep (upkeep_id, upkeep_content, upkeep_time, 
+      upkeep_handle_time, upkeep_process, upkeep_result, 
+      owners_id, admin_id)
+    values (#{upkeepId,jdbcType=INTEGER}, #{upkeepContent,jdbcType=VARCHAR}, #{upkeepTime,jdbcType=TIMESTAMP}, 
+      #{upkeepHandleTime,jdbcType=TIMESTAMP}, #{upkeepProcess,jdbcType=VARCHAR}, #{upkeepResult,jdbcType=VARCHAR}, 
+      #{ownersId,jdbcType=INTEGER}, #{adminId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.pms.pojo.Upkeep" >
+    insert into upkeep
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="upkeepId != null" >
+        upkeep_id,
+      </if>
+      <if test="upkeepContent != null" >
+        upkeep_content,
+      </if>
+      <if test="upkeepTime != null" >
+        upkeep_time,
+      </if>
+      <if test="upkeepHandleTime != null" >
+        upkeep_handle_time,
+      </if>
+      <if test="upkeepProcess != null" >
+        upkeep_process,
+      </if>
+      <if test="upkeepResult != null" >
+        upkeep_result,
+      </if>
+      <if test="ownersId != null" >
+        owners_id,
+      </if>
+      <if test="adminId != null" >
+        admin_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="upkeepId != null" >
+        #{upkeepId,jdbcType=INTEGER},
+      </if>
+      <if test="upkeepContent != null" >
+        #{upkeepContent,jdbcType=VARCHAR},
+      </if>
+      <if test="upkeepTime != null" >
+        #{upkeepTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="upkeepHandleTime != null" >
+        #{upkeepHandleTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="upkeepProcess != null" >
+        #{upkeepProcess,jdbcType=VARCHAR},
+      </if>
+      <if test="upkeepResult != null" >
+        #{upkeepResult,jdbcType=VARCHAR},
+      </if>
+      <if test="ownersId != null" >
+        #{ownersId,jdbcType=INTEGER},
+      </if>
+      <if test="adminId != null" >
+        #{adminId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.pms.pojo.Upkeep" >
+    update upkeep
+    <set >
+      <if test="upkeepContent != null" >
+        upkeep_content = #{upkeepContent,jdbcType=VARCHAR},
+      </if>
+      <if test="upkeepTime != null" >
+        upkeep_time = #{upkeepTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="upkeepHandleTime != null" >
+        upkeep_handle_time = #{upkeepHandleTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="upkeepProcess != null" >
+        upkeep_process = #{upkeepProcess,jdbcType=VARCHAR},
+      </if>
+      <if test="upkeepResult != null" >
+        upkeep_result = #{upkeepResult,jdbcType=VARCHAR},
+      </if>
+      <if test="ownersId != null" >
+        owners_id = #{ownersId,jdbcType=INTEGER},
+      </if>
+      <if test="adminId != null" >
+        admin_id = #{adminId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where upkeep_id = #{upkeepId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.pms.pojo.Upkeep" >
+    update upkeep
+    set upkeep_content = #{upkeepContent,jdbcType=VARCHAR},
+      upkeep_time = #{upkeepTime,jdbcType=TIMESTAMP},
+      upkeep_handle_time = #{upkeepHandleTime,jdbcType=TIMESTAMP},
+      upkeep_process = #{upkeepProcess,jdbcType=VARCHAR},
+      upkeep_result = #{upkeepResult,jdbcType=VARCHAR},
+      owners_id = #{ownersId,jdbcType=INTEGER},
+      admin_id = #{adminId,jdbcType=INTEGER}
+    where upkeep_id = #{upkeepId,jdbcType=INTEGER}
+  </update>
+</mapper>
